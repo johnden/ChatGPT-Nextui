@@ -73,10 +73,10 @@ const Home: NextPage = () => {
       <Nav pressRefresh={refresh} />
       <Flex as="main" justify="between" direction="column">
         <Flex direction={"column"}>
-          {messages.map((item) => {
+          {messages.map((item, index) => {
             if (item.isSelf === true) {
               return (
-                <Flex justify="end" css={{ gap: "$10", padding: "$5" }}>
+                <Flex key={index} justify="end" css={{ gap: "$10", padding: "$5" }}>
                   <Card
                     isPressable
                     isHoverable
@@ -97,7 +97,7 @@ const Home: NextPage = () => {
               );
             } else {
               return (
-                <Flex justify="end" css={{ gap: "$10", padding: "$5" }}>
+                <Flex key={index} justify="end" css={{ gap: "$10", padding: "$5" }}>
                   <Card
                     isPressable
                     isHoverable
@@ -117,22 +117,28 @@ const Home: NextPage = () => {
                 </Flex>
               );
             }
-            
-            <Flex justify="end" css={{ display:loading?"flex":"none", gap: "$10", padding: "$5" }}>
-              <Card
 
-                    css={{
-                      $$cardColor: "$colors$gradient",
-                      display: "flex",
-                    }}
-                  >
-                    <Card.Body>
-                      <Row justify="flex-start" align="center">
-                        <Loading type="points" />
-                      </Row>
-                    </Card.Body>
-                  </Card>
-             </Flex>
+            <Flex
+              justify="end"
+              css={{
+                display: loading ? "flex" : "none",
+                gap: "$10",
+                padding: "$5",
+              }}
+            >
+              <Card
+                css={{
+                  $$cardColor: "$colors$gradient",
+                  display: "flex",
+                }}
+              >
+                <Card.Body>
+                  <Row justify="flex-start" align="center">
+                    <Loading type="points" />
+                  </Row>
+                </Card.Body>
+              </Card>
+            </Flex>;
           })}
         </Flex>
 
