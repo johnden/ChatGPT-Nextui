@@ -13,12 +13,17 @@ import axios from "axios";
 // import dotenv from 'dotenv-safe'
 // dotenv.config()
 
+interface MessageProps {
+  isSelf: Boolean,
+  message: String
+}
+
 const Home: NextPage = () => {
   const [index, setIndex] = useState(0);
   const [loading, setLoading] = useState(false);
   const [id, setId] = useState("");
   const [conversationID, setConversationID] = useState("");
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState<MessageProps>([]);
 
   const refresh = () => {
     setIndex(0);
@@ -28,9 +33,10 @@ const Home: NextPage = () => {
     console.log("refreshed");
   };
 
-  const sendMessage = (msg) => {
+  const sendMessage = (msg:string) => {
     console.log(msg);
     var tempMessages = messages;
+    
     tempMessages.push({
       isSelf: true,
       message: msg,

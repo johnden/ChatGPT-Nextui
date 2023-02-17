@@ -3,13 +3,18 @@ import React, { useState } from "react";
 import { AcmeLogo } from "../navbar/logo";
 import { Box } from "../styles/box";
 import { Flex } from "../styles/flex";
-import { SendIcon } from "../icons/SendIcon";
+import { CheckIcon } from "../icons/CheckIcon";
 
-export const Footer = ({ pressSend, outputMsg, isLoading }) => {
+interface FooterProps {
+   pressSend: (str: string) => void;
+   isLoading?: boolean;
+ }
+
+export const Footer: React.FC<FooterProps> = ({ pressSend,  isLoading }) => {
   const [msg, setMsg] = useState("");
-  const handleChange = (event) => {
+  const handleChange = (message:string) => {
     // get input value from event.target.value and update state with setValue function
-    setMsg(event.target.value);
+    setMsg(message);
   };
 
   return (
@@ -70,11 +75,11 @@ export const Footer = ({ pressSend, outputMsg, isLoading }) => {
                     pressSend(msg);
                   }}
                   css={{paddingRight:'$5', paddingLeft:'$5'}}
-                  icon={<SendIcon/>}
+                  icon={<CheckIcon/>}
                 />
                   
               }
-              onChange={(e) => handleChange(e)}
+              onChange={(e) => handleChange(e.target.value)}
             />
           </Flex>
         </Box>

@@ -15,7 +15,11 @@ import { useTheme } from "@nextui-org/react";
 import { Flex } from "../styles/flex";
 import { GithubIcon } from "../icons/GithubIcon";
 
-export const Nav = ({ pressRefresh }) => {
+interface NavProps {
+   pressRefresh: () => void;
+ }
+
+export const Nav: React.FC<NavProps> = ({ pressRefresh }) => {
   const { setTheme } = useNextTheme();
   const { isDark, type } = useTheme();
 
