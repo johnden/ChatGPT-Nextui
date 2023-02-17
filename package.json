@@ -10,6 +10,9 @@
   },
   "dependencies": {
     "@nextui-org/react": "1.0.0-beta.10",
+    "axios": "^1.3.3",
+    "chatgpt": "^4.4.1",
+    "dotenv-safe": "^8.2.0",
     "next": "12.3.0",
     "next-themes": "^0.2.1",
     "react": "18.2.0",

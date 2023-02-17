@@ -1,239 +1,84 @@
-import {Divider, Text} from '@nextui-org/react';
-import React from 'react';
-import {AcmeLogo} from '../navbar/logo';
-import {Box} from '../styles/box';
-import {Flex} from '../styles/flex';
+import { Button, Divider, Text, Input } from "@nextui-org/react";
+import React, { useState } from "react";
+import { AcmeLogo } from "../navbar/logo";
+import { Box } from "../styles/box";
+import { Flex } from "../styles/flex";
+import { SendIcon } from "../icons/SendIcon";
 
-export const Footer = () => {
-   return (
-      <Flex
-         css={{
-            py: '$20',
-            px: '$6',
-         }}
-      >
-         <Box as={'footer'} css={{width: '100%'}}>
-            <Flex
-               justify={'center'}
-               wrap={'wrap'}
-               align={'center'}
-               css={{
-                  'gap': '$10',
-                  '&  ul': {
-                     margin: 0,
-                  },
-                  '@sm': {},
-               }}
-            >
-               <Flex
-                  css={{gap: '$5', w: '250px'}}
-                  direction={'column'}
-                  align={'center'}
-               >
-                  <AcmeLogo />
-                  <Box as={'ul'} css={{gap: '$5', listStyle: 'none'}}>
-                     <Box as={'li'}>
-                        <Text span css={{color: '$accents8'}}>
-                           First Link
-                        </Text>
-                     </Box>
-                     <Box as={'li'}>
-                        <Text span css={{color: '$accents8'}}>
-                           Second Link
-                        </Text>
-                     </Box>
-                     <Box as={'li'}>
-                        <Text span css={{color: '$accents8'}}>
-                           Third Link
-                        </Text>
-                     </Box>
-                     <Box as={'li'}>
-                        <Text span css={{color: '$accents8'}}>
-                           Forth Link
-                        </Text>
-                     </Box>
-                  </Box>
-               </Flex>
-               <Flex
-                  css={{gap: '$5', w: '250px'}}
-                  direction={'column'}
-                  align={'center'}
-               >
-                  <Text h5>Resources</Text>
-                  <Box as={'ul'} css={{gap: '$5', listStyle: 'none'}}>
-                     <Box as={'li'}>
-                        <Text span css={{color: '$accents8'}}>
-                           First Link
-                        </Text>
-                     </Box>
-                     <Box as={'li'}>
-                        <Text span css={{color: '$accents8'}}>
-                           Second Link
-                        </Text>
-                     </Box>
-                     <Box as={'li'}>
-                        <Text span css={{color: '$accents8'}}>
-                           Third Link
-                        </Text>
-                     </Box>
-                     <Box as={'li'}>
-                        <Text span css={{color: '$accents8'}}>
-                           Forth Link
-                        </Text>
-                     </Box>
-                  </Box>
-               </Flex>
-               <Flex
-                  css={{gap: '$5', w: '250px'}}
-                  direction={'column'}
-                  align={'center'}
-               >
-                  <Text h5>Contact</Text>
-                  <Box as={'ul'} css={{gap: '$5', listStyle: 'none'}}>
-                     <Box as={'li'}>
-                        <Text span css={{color: '$accents8'}}>
-                           First Link
-                        </Text>
-                     </Box>
-                     <Box as={'li'}>
-                        <Text span css={{color: '$accents8'}}>
-                           Second Link
-                        </Text>
-                     </Box>
-                     <Box as={'li'}>
-                        <Text span css={{color: '$accents8'}}>
-                           Third Link
-                        </Text>
-                     </Box>
-                     <Box as={'li'}>
-                        <Text span css={{color: '$accents8'}}>
-                           Forth Link
-                        </Text>
-                     </Box>
-                  </Box>
-               </Flex>
-               <Flex
-                  css={{gap: '$5', w: '250px'}}
-                  direction={'column'}
-                  align={'center'}
-               >
-                  <Text h5>Legal</Text>
-                  <Box as={'ul'} css={{gap: '$5', listStyle: 'none'}}>
-                     <Box as={'li'}>
-                        <Text span css={{color: '$accents8'}}>
-                           First Link
-                        </Text>
-                     </Box>
-                     <Box as={'li'}>
-                        <Text span css={{color: '$accents8'}}>
-                           Second Link
-                        </Text>
-                     </Box>
-                     <Box as={'li'}>
-                        <Text span css={{color: '$accents8'}}>
-                           Third Link
-                        </Text>
-                     </Box>
-                     <Box as={'li'}>
-                        <Text span css={{color: '$accents8'}}>
-                           Forth Link
-                        </Text>
-                     </Box>
-                  </Box>
-               </Flex>
-               <Flex
-                  css={{gap: '$5', w: '250px'}}
-                  direction={'column'}
-                  align={'center'}
-               >
-                  <Text h5>Press</Text>
-                  <Box as={'ul'} css={{gap: '$5', listStyle: 'none'}}>
-                     <Box as={'li'}>
-                        <Text span css={{color: '$accents8'}}>
-                           First Link
-                        </Text>
-                     </Box>
-                     <Box as={'li'}>
-                        <Text span css={{color: '$accents8'}}>
-                           Second Link
-                        </Text>
-                     </Box>
-                     <Box as={'li'}>
-                        <Text span css={{color: '$accents8'}}>
-                           Third Link
-                        </Text>
-                     </Box>
-                     <Box as={'li'}>
-                        <Text span css={{color: '$accents8'}}>
-                           Forth Link
-                        </Text>
-                     </Box>
-                  </Box>
-               </Flex>
-            </Flex>
-            <Box
-               css={{
-                  'px': '$10',
-                  '@md': {
-                     px: '$56',
-                  },
-               }}
-            >
-               <Divider
-                  css={{
-                     mt: '$14',
-                     display: 'flex',
-                     justifyContent: 'center',
+export const Footer = ({ pressSend, outputMsg, isLoading }) => {
+  const [msg, setMsg] = useState("");
+  const handleChange = (event) => {
+    // get input value from event.target.value and update state with setValue function
+    setMsg(event.target.value);
+  };
+
+  return (
+    <Flex
+      css={{
+        py: "$10",
+        px: "$6",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        position: "fixed",
+      }}
+    >
+      <Box as={"footer"} css={{ width: "100%" }}>
+        <Box
+          css={{
+            // px: "$10",
+            "@md": {
+              px: "$56",
+            },
+          }}
+        >
+          <Divider
+            css={{
+              //   mt: "$14",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          />
+          <Flex
+            //   justify={'between'}
+            align={"center"}
+            wrap={"wrap"}
+            css={{
+              pt: "$8",
+              gap: "$10",
+              justifyContent: "center",
+              "@md": {
+                justifyContent: "space-between",
+              },
+            }}
+          >
+            <Input
+              fullWidth
+              disabled={isLoading}
+              value={msg}
+              placeholder="Say something!"
+              contentRight={
+                <Button
+                  auto
+                  disabled={isLoading}
+                  onPress={() => {
+                     if(msg.length===0){
+                        return;
+                     }
+
+                    setMsg("");
+                    pressSend(msg);
                   }}
-               />
-               <Flex
-                  //   justify={'between'}
-                  align={'center'}
-                  wrap={'wrap'}
-                  css={{
-                     'pt': '$8',
-                     'gap': '$10',
-                     'justifyContent': 'center',
-                     '@md': {
-                        justifyContent: 'space-between',
-                     },
-                  }}
-               >
-                  <Flex
-                     css={{
-                        gap: '$10',
-                     }}
-                     wrap={'wrap'}
-                  >
-                     <AcmeLogo />
-                     <AcmeLogo />
-                     <AcmeLogo />
-                     <AcmeLogo />
-                  </Flex>
-                  <Flex
-                     css={{
-                        gap: '$6',
-                     }}
-                  >
-                     <Text span css={{color: '$accents8'}}>
-                        Terms of Service
-                     </Text>
-                     <Text span css={{color: '$accents8'}}>
-                        Privacy Policy
-                     </Text>
-                  </Flex>
-                  <Flex
-                     css={{
-                        gap: '$6',
-                     }}
-                  >
-                     <Text span css={{color: '$accents8'}}>
-                        © Copyright 2021 Acme Inc.
-                     </Text>
-                  </Flex>
-               </Flex>
-            </Box>
-         </Box>
-      </Flex>
-   );
+                  css={{paddingRight:'$5', paddingLeft:'$5'}}
+                  icon={<SendIcon/>}
+                />
+                  
+              }
+              onChange={(e) => handleChange(e)}
+            />
+          </Flex>
+        </Box>
+      </Box>
+    </Flex>
+  );
 };
